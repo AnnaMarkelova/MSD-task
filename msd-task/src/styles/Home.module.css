@@ -1,0 +1,19 @@
+.main {
+    min-height: 100vh;
+    padding: 0 100px;
+    background-color: lightgrey;
+}
+
+.title {
+    margin: 0;
+    margin-left: 60px;
+    text-align: start;
+    padding: 20px 0;
+    font-weight: bold;
+}
+
+.charts {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+}

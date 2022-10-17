@@ -1,0 +1,18 @@
+.mainPanel {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 50px;
+}
+
+.title {
+    margin: 0;
+    text-align: start;
+    font-size: 16px;
+    font-weight: 400;
+    background-color: lightgrey;
+}
+
+.buttonContainer {
+    display: flex;
+}

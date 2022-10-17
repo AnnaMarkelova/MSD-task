@@ -1,0 +1,10 @@
+@import '~antd/dist/antd.css';
+
+.ant-avatar {
+  margin-top: 16px;
+  margin-right: 16px;
+}
+.ant-row-rtl .ant-avatar {
+  margin-right: 0;
+  margin-left: 16px;
+}
