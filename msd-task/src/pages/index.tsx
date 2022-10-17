@@ -2,7 +2,7 @@ import type { NextPage } from 'next'
 import Head from 'next/head'
 import ChartContainer from '../components/chart-container/chart-container'
 import MainPanel from '../components/main-panel/main-panel'
-import { Chart } from '../consts/chart'
+import { ChartType } from '../consts/chart'
 import styles from '../styles/Home.module.css'
 
 const Home: NextPage = () => {
@@ -21,9 +21,9 @@ const Home: NextPage = () => {
                 <MainPanel />
                 <div className={styles.charts}>
                     <ChartContainer
-                        chart={Chart.Chart1} />
+                        chartType={ChartType.ChartVaccinated} />
                     <ChartContainer
-                        chart={Chart.Chart1} />
+                        chartType={ChartType.ChartCasesAndDeath} />
                 </div>
             </main>
         </div>

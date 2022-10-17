@@ -1,27 +1,32 @@
 import { CommentOutlined } from '@ant-design/icons';
 import { Avatar, Button, Image } from 'antd';
-import { Chart } from '../../consts/chart';
+import { ChartType } from '../../consts/chart';
+import { getChartData } from '../../consts/chart-data';
+import Chart from '../chart/chart';
+
 import styles from '../../styles/ChartContainer.module.css'
 
 const COUNT_COMMENTS = 3;
 interface ChartContainerProps {
-    chart: Chart,
+    chartType: ChartType,
 }
-const ChartContainer = ({ chart }: ChartContainerProps) => {
+
+const ChartContainer = ({ chartType }: ChartContainerProps) => {
 
     return (
         <div className={styles.chartContainer}>
             <h2 className={styles.title}>
-                {chart}
+                {getChartData().get(chartType).title}
             </h2>
-            <div>
-            </div>
+            <Chart
+                chartType={chartType}
+            />
             <div className={styles.chartPanel}>
                 <Avatar
                     src={
                         <Image
                             src="https://joeschmoe.io/api/v1/random"
-                            style={{width: 32}}
+                            style={{ width: 32 }}
                             alt='random avatar'
                         />}
                 />

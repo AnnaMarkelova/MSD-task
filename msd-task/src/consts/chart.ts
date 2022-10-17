@@ -1,4 +1,4 @@
-export enum Chart {
-    Chart1 = 'Chart1',
-    Chart2 = 'Chart2',
-  }
+export enum ChartType {
+    ChartVaccinated = 'ChartVaccinated',
+    ChartCasesAndDeath = 'ChartCasesAndDeath',
+}
