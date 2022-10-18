@@ -19,11 +19,11 @@ const Home: NextPage = () => {
             </header>
             <main className={styles.main}>
                 <MainPanel />
-                <div className={styles.charts}>
+                <div className={styles.charts}> 
                     <ChartContainer
                         chartType={ChartType.ChartVaccinated} />
                     <ChartContainer
-                        chartType={ChartType.ChartCasesAndDeath} />
+                        chartType={ChartType.ChartCumAdmissionsByAge} />
                 </div>
             </main>
         </div>
