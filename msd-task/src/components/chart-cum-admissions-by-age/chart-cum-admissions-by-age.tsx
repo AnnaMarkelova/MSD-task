@@ -2,22 +2,16 @@ import { Chart } from '@antv/g2';
 import { useCallback } from 'react';
 import { ageRating } from '../../consts/age-rating';
 import useFetchCoronavirusData from '../../hooks/useFetchCoronavirusData';
+import { AdmittedToHospitalByAge, CumAdmissionsByAge } from '../../types/admitted-to-hospital-by-age';
 import ChartComponent from '../chart-component/chart-component';
 
-type cumAdmissionsByAgeType = {
-    age: string,
-    rate: number,
-    value: number,
-    percentage: number
-}
-
-const getDataSortedByAge = (data: cumAdmissionsByAgeType[]) => {
+const getDataSortedByAge = (data: CumAdmissionsByAge[]) => {
     return data.sort((itemA, itemB) => ageRating.get(itemA.age) - ageRating.get(itemB.age));
 }
 
-const addPercentageToData = (data: cumAdmissionsByAgeType[]) => {
+const addPercentageToData = (data: CumAdmissionsByAge[]) => {
     const sumPopulation = data.
-        reduce((prevItem: number, curItem: cumAdmissionsByAgeType) => prevItem + curItem.value, 0);
+        reduce((prevItem: number, curItem: CumAdmissionsByAge) => prevItem + curItem.value, 0);
     return data.map((item) => ({...item, percentage: Math.floor(item.value * 100 / sumPopulation)}))
 }
 export default function ChartCumAdmissionsByAge() {
@@ -26,7 +20,7 @@ export default function ChartCumAdmissionsByAge() {
         + 'filters=areaType=nation&areaCode=E92000001&'
         + 'structure={"date":"date","cumAdmissionsByAge":"cumAdmissionsByAge"}'
 
-    const { data: rawData, error } = useFetchCoronavirusData(url);
+    const { data: rawData, error } = useFetchCoronavirusData<AdmittedToHospitalByAge>(url);
     let data = null;
     if (rawData != null) {
         const cumAdmissionsByAgeLast = rawData?.data[0].cumAdmissionsByAge;

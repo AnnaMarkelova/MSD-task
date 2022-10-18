@@ -1,6 +1,7 @@
 import { Chart } from '@antv/g2';
 import { useCallback } from 'react';
 import useFetchCoronavirusData from '../../hooks/useFetchCoronavirusData';
+import { Vaccinated } from '../../types/vaccinated';
 import ChartComponent from '../chart-component/chart-component';
 
 export default function ChartVaccinated() {
@@ -9,7 +10,7 @@ export default function ChartVaccinated() {
     + 'filters=areaType=nation;areaName=england&'
     + 'structure={"date":"date","newPeopleVaccinatedFirstDose":"newPeopleVaccinatedFirstDoseByPublishDate","newPeopleVaccinatedSecondDose":"newPeopleVaccinatedSecondDoseByPublishDate"}';
     
-    const { data: rawData, error } = useFetchCoronavirusData(url);
+    const { data: rawData, error } = useFetchCoronavirusData<Vaccinated>(url);
 
     const data = rawData?.data.slice(0, 30);
     
