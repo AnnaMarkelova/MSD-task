@@ -11,7 +11,7 @@ const MainPanel = () => {
     return (
         <div className={styles.mainPanel}>
             <h1 className={styles.title}>
-                Page title
+            Coronavirus data in England
             </h1>
             <Space className={styles.buttonContainer} size={[8, 16]} wrap>
                 <Button type='default' >

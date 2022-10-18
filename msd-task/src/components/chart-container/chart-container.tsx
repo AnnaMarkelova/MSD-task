@@ -1,26 +1,21 @@
 import { CommentOutlined } from '@ant-design/icons';
 import { Avatar, Button, Image, Space } from 'antd';
-import { ChartType } from '../../consts/chart';
-import { getChartData } from '../../consts/chart-data';
-
 import styles from '../../styles/ChartContainer.module.css'
-import ChartCumAdmissionsByAge from '../chart-cum-admissions-by-age/chart-cum-admissions-by-age';
-import ChartVaccinated from '../chart-vaccinated/chart-vaccinated';
 
 const COUNT_COMMENTS = 3;
 interface ChartContainerProps {
-    chartType: ChartType,
+    title: string,
+    ChartElement: JSX.Element
 }
 
-const ChartContainer = ({ chartType }: ChartContainerProps) => {
+const ChartContainer = ({ title, ChartElement}: ChartContainerProps) => {
 
     return (
         <div className={styles.chartContainer}>
             <h2 className={styles.title}>
-                {getChartData().get(chartType).title}
+                {title}
             </h2>
-            {(chartType === ChartType.ChartVaccinated) && <ChartVaccinated/>}
-            {(chartType === ChartType.ChartCumAdmissionsByAge) && <ChartCumAdmissionsByAge/>}
+            {ChartElement}
             <div className={styles.chartPanel}>
                 <Avatar
                     src={

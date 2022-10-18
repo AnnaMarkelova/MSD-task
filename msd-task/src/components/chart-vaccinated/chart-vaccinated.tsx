@@ -1,48 +1,39 @@
 import { Chart } from '@antv/g2';
-import { useEffect, useRef } from 'react';
-import { ChartType } from '../../consts/chart';
+import { useCallback } from 'react';
 import useFetchCoronavirusData from '../../hooks/useFetchCoronavirusData';
-import Loader from '../loader/loader';
-import NoData from '../no-data/no-data';
+import ChartComponent from '../chart-component/chart-component';
 
 export default function ChartVaccinated() {
 
-    const { data, error } = useFetchCoronavirusData(ChartType.ChartVaccinated);
+    const url = 'https://api.coronavirus.data.gov.uk/v1/data?'
+    + 'filters=areaType=nation;areaName=england&'
+    + 'structure={"date":"date","newPeopleVaccinatedFirstDose":"newPeopleVaccinatedFirstDoseByPublishDate","newPeopleVaccinatedSecondDose":"newPeopleVaccinatedSecondDoseByPublishDate"}';
+    
+    const { data: rawData, error } = useFetchCoronavirusData(url);
 
-    const ref = useRef<HTMLDivElement>(null);
-
-    useEffect(() => {
-        if (!ref || !data || ref.current == null) return;
-
-        const chart = new Chart({
-            container: ref.current,
-            autoFit: true,
-            height: 500,
-        });
-
-        const dataLast30days = data.data.slice(0,60);
-        chart.data(dataLast30days);
-
+    const data = rawData?.data.slice(0, 60);
+    
+    const setChart = useCallback((chart: Chart) => {
         chart.tooltip({
             shared: true,
             showMarkers: false,
         });
-    
+
         chart.scale('newPeopleVaccinatedFirstDose', {
             alias: 'people vaccinated first dose',
             nice: true,
         });
-    
+
         chart.scale('newPeopleVaccinatedSecondDose', {
             alias: 'people vaccinated second dose',
             nice: true,
         });
-    
+
         chart.interaction('active-region');
-    
+
         chart.line().position('date*newPeopleVaccinatedFirstDose').color('#2c7d63');
         chart.line().position('date*newPeopleVaccinatedSecondDose').color('#8b59c9');
-    
+
         chart.legend({
             custom: true,
             items: [
@@ -50,18 +41,13 @@ export default function ChartVaccinated() {
                 { name: 'people vaccinated second dose', value: 'newPeopleVaccinatedSecondDose', marker: { symbol: 'line', style: { stroke: '#8b59c9', lineWidth: 2 } } },
             ],
         });
-
-        chart.render();
-
-        return () => chart.destroy();
-    }, [data, ref])
-
-    if (error) return <NoData />;
-    if (!data) return <Loader />;
+    }, []);
 
     return (
-        <div>
-            <div ref={ref} />
-        </div>
+        <ChartComponent
+        data={data}
+        error={error}
+        setChart={setChart}
+        />
     );
 }
