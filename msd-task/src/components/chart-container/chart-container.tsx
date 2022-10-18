@@ -1,5 +1,5 @@
 import { CommentOutlined } from '@ant-design/icons';
-import { Avatar, Button, Image } from 'antd';
+import { Avatar, Button, Image, Space } from 'antd';
 import { ChartType } from '../../consts/chart';
 import { getChartData } from '../../consts/chart-data';
 
@@ -30,9 +30,11 @@ const ChartContainer = ({ chartType }: ChartContainerProps) => {
                             alt='random avatar'
                         />}
                 />
-                <Button type='default'>
+                <Button type='link'style={ { color: 'gray' }}>
+                    <Space>
                     {COUNT_COMMENTS}
-                    <CommentOutlined />
+                    <CommentOutlined style={ { fontSize: '20px', color: 'gray' }}/>
+                    </Space>
                 </Button>
             </div>
         </div>
