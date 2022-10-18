@@ -19,7 +19,7 @@ export default function ChartComponent({ data, error, setChart }: ChartComponent
         const chart = new Chart({
             container: ref.current,
             autoFit: true,
-            height: 500,
+            height: 400,
         });
 
         chart.data(data);

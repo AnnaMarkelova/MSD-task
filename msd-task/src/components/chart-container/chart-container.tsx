@@ -15,7 +15,9 @@ const ChartContainer = ({ title, ChartElement}: ChartContainerProps) => {
             <h2 className={styles.title}>
                 {title}
             </h2>
+            <div className={styles.ChartElement}>
             {ChartElement}
+            </div>
             <div className={styles.chartPanel}>
                 <Avatar
                     src={

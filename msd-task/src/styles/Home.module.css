@@ -1,7 +1,13 @@
 .main {
-    min-height: 100vh;
     padding: 0 100px;
+    min-height: 100vh;
     background-color: rgb(237, 236, 236);
+}
+
+.page {
+    margin: 0 auto;
+    min-width: 320px;
+    max-width: 1280px;
 }
 
 .header {

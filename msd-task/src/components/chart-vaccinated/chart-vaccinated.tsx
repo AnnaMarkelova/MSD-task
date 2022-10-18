@@ -11,12 +11,11 @@ export default function ChartVaccinated() {
     
     const { data: rawData, error } = useFetchCoronavirusData(url);
 
-    const data = rawData?.data.slice(0, 60);
+    const data = rawData?.data.slice(0, 30);
     
     const setChart = useCallback((chart: Chart) => {
         chart.tooltip({
             shared: true,
-            showMarkers: false,
         });
 
         chart.scale('newPeopleVaccinatedFirstDose', {
@@ -29,7 +28,7 @@ export default function ChartVaccinated() {
             nice: true,
         });
 
-        chart.interaction('active-region');
+        chart.interaction('element-active');
 
         chart.line().position('date*newPeopleVaccinatedFirstDose').color('#2c7d63');
         chart.line().position('date*newPeopleVaccinatedSecondDose').color('#8b59c9');

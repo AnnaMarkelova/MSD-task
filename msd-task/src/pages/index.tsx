@@ -19,15 +19,17 @@ const Home: NextPage = () => {
                 <p className={styles.title} >The data on coronavirus in the UK (COVID-19)</p>
             </header>
             <main className={styles.main}>
-                <MainPanel />
-                <div className={styles.charts}> 
-                    <ChartContainer
-                    title='New people vaccinated 1nd and 2nd dose in the last 30 days'
-                    ChartElement={<ChartVaccinated/>}
-                    />
-                    <ChartContainer
-                    title='Total number of patients admitted to hospital with COVID-19 since the start of the pandemic, by age'
-                    ChartElement={<ChartCumAdmissionsByAge/>}/>
+                <div className={styles.page}>
+                    <MainPanel />
+                    <div className={styles.charts}>
+                        <ChartContainer
+                            title='New people vaccinated 1nd and 2nd dose in the last 30 days'
+                            ChartElement={<ChartVaccinated />}
+                        />
+                        <ChartContainer
+                            title='Total number of patients admitted to hospital with COVID-19 since the start of the pandemic, by age'
+                            ChartElement={<ChartCumAdmissionsByAge />} />
+                    </div>
                 </div>
             </main>
         </div>
